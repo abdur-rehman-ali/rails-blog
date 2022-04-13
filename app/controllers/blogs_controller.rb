@@ -1,11 +1,12 @@
 class BlogsController < ApplicationController
+    before_action :set_blog , only: %i[show edit update destroy]
+
 
     def index 
         @blogs = Blog.all 
     end
 
     def show
-        @blog = Blog.find(params[:id])
     end
 
     def new 
@@ -22,11 +23,9 @@ class BlogsController < ApplicationController
     end
 
     def edit 
-        @blog = Blog.find(params[:id])
     end
 
     def update
-        @blog = Blog.find(params[:id])
         if @blog.update(blogs_params.merge({date: Time.now}))
             redirect_to blogs_path
         else
@@ -35,7 +34,6 @@ class BlogsController < ApplicationController
     end
 
     def destroy
-        @blog = Blog.find(params[:id])
         @blog.destroy
         redirect_to blogs_path
     end
@@ -43,6 +41,10 @@ class BlogsController < ApplicationController
     private 
     def blogs_params 
         params.require(:blog).permit(:title,:content,:author)
+    end
+
+    def set_blog
+        @blog = Blog.find(params[:id])
     end
 
 end
