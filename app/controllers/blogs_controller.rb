@@ -16,7 +16,7 @@ class BlogsController < ApplicationController
     def create 
         @blog = Blog.new(blogs_params.merge({date: Time.now}))
         if @blog.save
-            redirect_to blogs_path 
+            redirect_to blogs_path , notice: 'Blog has been deleted successfully!!!'
         else
             render :new
         end
@@ -27,7 +27,7 @@ class BlogsController < ApplicationController
 
     def update
         if @blog.update(blogs_params.merge({date: Time.now}))
-            redirect_to blogs_path
+            redirect_to blogs_path , notice: 'Blog has been updated successfully!!!'
         else
             render :update
         end
