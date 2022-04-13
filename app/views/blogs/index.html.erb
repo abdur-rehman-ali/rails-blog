@@ -8,8 +8,11 @@
   <div class="card-body">
     <h5 class="card-title"><%= blog.title %></h5>
     <p class="card-text"><%= blog.content.truncate(60) %></p>
-    <%# <a href="#" class="btn btn-primary">Read More</a> %>
+
     <%= link_to 'Read More', blog, class:'btn btn-primary' %>
+    <br><br>
+    <%= link_to 'Update', edit_blog_path(blog), class:'btn btn-danger' %>
+ 
   </div>
 </div>
 </div>

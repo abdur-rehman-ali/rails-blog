@@ -25,4 +25,9 @@ class BlogsController < ApplicationController
             render :new
         end
     end
+
+    def edit 
+        @blog = Blog.find(params[:id])
+    end
+
 end
