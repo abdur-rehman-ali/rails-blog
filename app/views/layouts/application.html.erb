@@ -18,9 +18,11 @@
   </head>
   <body>
     <%= render 'layouts/navbar' %>
-    <p class="notice"><%= notice %></p>
+    
+    <div class="container">
     <p class="alert"><%= alert %></p>
     <%= yield %>
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
