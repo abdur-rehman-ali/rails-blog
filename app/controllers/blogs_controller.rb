@@ -3,7 +3,7 @@ class BlogsController < ApplicationController
     before_action :authenticate_user!, except: [:index]
 
 
-    def index 
+    def index
         @blogs = Blog.all 
     end
 
@@ -15,9 +15,9 @@ class BlogsController < ApplicationController
     end
 
     def create 
-        @blog = Blog.new(blogs_params.merge({date: Time.now}))
+        @blog = Blog.new(blogs_params.merge({date: Time.now,user_id: current_user.id }))
         if @blog.save
-            redirect_to blogs_path , notice: 'Blog has been deleted successfully!!!'
+            redirect_to blogs_path , notice: 'Blog has been created successfully!!!'
         else
             render :new
         end
@@ -36,12 +36,12 @@ class BlogsController < ApplicationController
 
     def destroy
         @blog.destroy
-        redirect_to blogs_path
+        redirect_to blogs_path , notice: 'Blog has been deleted successfully!!!'
     end
 
     private 
     def blogs_params 
-        params.require(:blog).permit(:title,:content,:author)
+        params.require(:blog).permit(:title,:content)
     end
 
     def set_blog
