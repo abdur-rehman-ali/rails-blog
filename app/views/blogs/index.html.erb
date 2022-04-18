@@ -14,11 +14,14 @@
 
     <%= link_to 'Read More', blog, class:'btn btn-primary' %>
     <br><br>
+    <% if user_signed_in? %>
 
     <% if current_user.email == blog.user.email  %>
     <%= link_to 'Update', edit_blog_path(blog), class:'btn btn-danger' %> || 
     <%= link_to 'Delete', blog, method: :delete , class:'btn btn-danger' %>
     <% end %>
+    <% end %>
+
  
   </div>
 </div>
