@@ -1,13 +1,9 @@
 class CrudNotificationMailer < ApplicationMailer
-
-  # Subject can be set in your I18n file at config/locales/en.yml
-  # with the following lookup:
-  #
-  #   en.crud_notification_mailer.post_created.subject
-  #
   def post_created
     @greeting = "Hi"
+    @user = params[:user]
 
-    mail to: "to@example.org"
+    mail to: "abdur.rehman@devsinc.com" , subject: "Welcome to my site" 
+    
   end
 end

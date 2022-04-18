@@ -17,6 +17,7 @@ class BlogsController < ApplicationController
     def create 
         @blog = Blog.new(blogs_params.merge({date: Time.now,user_id: current_user.id }))
         if @blog.save
+            CrudNotificationMailer.with(user:@blog.user.email).post_created.deliver_later
             redirect_to blogs_path , notice: 'Blog has been created successfully!!!'
         else
             render :new
